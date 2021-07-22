@@ -1,0 +1,9 @@
+{"name":"sree","msg":"hello!"}
+
+Received employee message: Employee{name='sree', msg='hello!'}
+
+
+
+Resources
+--------
+https://github.com/eugenp/tutorials/tree/f43d6319c4d5e151cd501f6ecc24b337b7d5652c/spring-kafka

@@ -1,0 +1,211 @@
+Kafka
+
+
+
+Start zookeeper
+
+sh bin/zookeeper-server-start.sh config/zookeeper.properties
+
+Start Kafka
+
+sh bin/kafka-server-start.sh config/server.properties
+
+Create topic
+
+Cd /Users/srinivaspanaganti/Music/Servers/kafka_2.13-2.8.0/bin
+
+
+Intialize producer
+
+sh kafka-console-producer.sh --broker-list localhost:9092 --topic test
+
+
+Intialize consumer
+
+sh kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+
+
+
+
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+sh kafka-topics.sh --list --zookeeper localhost:2181
+__consumer_offsets
+test
+
+
+bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list
+
+sh kafka-topics.sh --bootstrap-server=localhost:9092 --list
+__consumer_offsets
+test
+
+
+
+
+
+Topic details
+——————
+
+
+/bin/kafka-topics.sh --bootstrap-server=localhost:9092 --describe --topic test
+
+
+sh kafka-topics.sh --bootstrap-server=localhost:9092 --describe --topic test
+
+Topic: test	TopicId: ID5RqZAITE2VfF_Ibt2C-g	PartitionCount: 1	ReplicationFactor: 1	Configs: segment.bytes=1073741824
+	Topic: test	Partition: 0	Leader: 0	Replicas: 0	Isr: 0
+
+
+
+
+ps -ef | grep 2181
+
+ps -ef | grep 2181
+  501 25899 23795   0  9:11PM ttys002    0:00.00 grep 2181
+
+
+
+
+Stop zookeeper
+/etc/bin/zookeeper-server-stop -daemon /etc/kafka/zookeeper.properties
+
+
+sh bin/zookeeper-server-start.sh config/zookeeper.properties
+
+sh zookeeper-server-stop.sh config/zookeeper.properties
+
+
+
+
+Stop Kafka
+
+sh bin/kafka-server-stop.sh config/server.properties
+
+
+
+
+Stop producer and consumer
+———
+
+Control + c
+
+
+
+
+
+ps -ef | grep 9092
+  501 26020 23795   0  9:18PM ttys002    0:00.00 grep 9092
+
+ps -ef | grep 2181
+  501 26023 23795   0  9:18PM ttys002    0:00.00 grep 2181
+
+
+
+ps -elf | grep kafka
+  501 26170 23795     4006   0  31  0 408103296   1248 -      S+                  0 ttys002    0:00.00 grep kafka        9:26PM
+
+
+ps -elf | grep zookeeper
+  501 26177 23795     4006   0  31  0 408103296   1248 -      S+                  0 ttys002    0:00.00 grep zookeeper    9:26PM
+
+
+
+
+
+
+
+Resources
+—————
+https://www.tutorialkart.com/apache-kafka/install-apache-kafka-on-mac/
+
+https://medium.com/@Ankitthakur/apache-kafka-installation-on-mac-using-homebrew-a367cdefd273
+
+https://www.baeldung.com/ops/kafka-list-topics
+
+
+https://kafka.apache.org/quickstart#:~:text=Stop%20the%20Kafka%20broker%20with,ZooKeeper%20server%20with%20Ctrl%2DC%20.
+
+
+https://kafka.apache.org/intro
+
+
+https://www.tutorialkart.com/apache-kafka/kafka-console-producer-and-consumer-example/
+
+
+
+https://www.youtube.com/watch?v=L_iu8HOus8k
+
+
+
+
+bin/kafka-topics.sh --create --topic mytopic --bootstrap-server localhost:9092
+bin/kafka-topics.sh --create --topic consumer-tutorial --replication-factor 1 --partitions 3 --zookeeper localhost:2181
+bin/kafka-verifiable-producer.sh --topic consumer-tutorial --max-messages 200000 --broker-list localhost:9092
+
+
+
+
+—>
+To see the properties check —>
+/config
+
+
+
+# consumer group id
+group.id=test-consumer-group
+
+
+
+
+bin/kafka-topics.sh --create --topic mytopic --bootstrap-server localhost:9092
+Created topic mytopic.
+
+
+bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list
+mytopic
+
+sh kafka-console-producer.sh --broker-list localhost:9092 --topic mytopic
+
+sh kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic mytopic --from-beginning
+
+
+
+
+Post request
+——
+
+http://localhost:8888/kafka/post?msg=Srinivart
+
+
+
+
+
+-->
+for group id --> check
+
+/config/consumer.properties
+
+spring.kafka.consumer.group-id=test-consumer-group
+
+
+
+
+http://localhost:8888/kafka/post?msg=Srinivart
+http://localhost:8888/kafka/post?msg=its working
+
+Examples -> console output
+---
+Consumed msg Srinivart
+publishing to topic mytopic
+Consumed msg its working
+publishing to topic mytopic
+Consumed msg lets push to git
+
+
+
+
+
+
+https://github.com/chargeahead/SpringBootKafka/
+

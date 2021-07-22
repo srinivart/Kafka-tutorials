@@ -1,0 +1,38 @@
+
+Local Installation
+cd /Users/srinivaspanaganti/Music/Servers/kafka_2.13-2.8.0/bin
+
+Start zookeeper
+sh bin/zookeeper-server-start.sh config/zookeeper.properties
+
+Start Kafka
+sh bin/kafka-server-start.sh config/server.properties
+
+Crete Topic
+sh bin/kafka-topics.sh --create --topic employees --bootstrap-server localhost:9092
+
+sh bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list employees
+
+Start Producer / consumer
+sh bin/kafka-console-producer.sh --broker-list localhost:9092 --topic employees
+
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic employees --from-beginning
+
+POST
+----
+http://localhost:8888/api/kafka/send
+
+
+{
+	"id" : 1,
+	"name" : "srini",
+	"designation" : "develop",
+	"salary" : 65000
+}
+
+
+
+
+
+
+Consumed msg Employee{id=1, name='srini', designation='develop', salary=65000}
