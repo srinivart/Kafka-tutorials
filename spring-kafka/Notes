@@ -1,0 +1,71 @@
+
+Tomcat initialized with port(s): 8080 (http)
+
+
+ bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list
+__consumer_offsets
+topic1
+
+
+
+--> here topic1 is created through program
+
+
+
+POST
+----
+
+
+http://localhost:8080/send/emp/srini
+
+2021-07-24 16:10:06.755  INFO 2266 --- [mer-group-0-C-1] com.srinivart.SpringKafkaApplication     : Received: Employee1{name='{"name":"srini"}'}
+Hit Enter to terminate...
+
+
+
+
+Through Terminal
+
+$ curl -X POST http://localhost:8080/send/emp/srini
+
+
+
+consumer
+------
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic1 --from-beginning
+
+
+{"name":"srini"}
+
+
+
+
+
+
+
+
+
+2)
+
+http://localhost:8080/send/emp
+
+
+Body
+----
+{
+
+"name" : "teju"
+}
+
+
+
+Log
+----
+2021-07-24 16:16:27.383  INFO 3004 --- [mer-group-0-C-1] com.srinivart.SpringKafkaApplication     :
+Received: Employee1{name='{"name":"teju"}'}
+
+
+{"name":"srini"}
+{"name":"teju"}
+
+
